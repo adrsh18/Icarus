@@ -55,7 +55,7 @@ But, we face another issue when this approach is applied to the current design p
 
 #### Solution
 I have employed part of **Template Pattern** into the DAO pattern to solve this problem. The solution is two-fold and makes use of **generics in java**:
-* All the classes for domain objects need to extend an abstract class (say, PersistentPojo, in my case). This acts just like a **marker interface**, we are just using an abstract class instead. [Click here for the class diagram] ().
+* All the classes for domain objects need to extend an abstract class (say, PersistentPojo, in my case). This acts just like a **marker interface**, we are just using an abstract class instead.
 * Now we can define a single implemetation for **HibernateDao** interface as follws: 
 ```java 
 public class HibernateDaoImpl implements Hibernate
