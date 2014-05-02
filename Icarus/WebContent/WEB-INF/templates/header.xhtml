@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 	xmlns="http://www.w3.org/1999/xhtml"		
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+	<h:body>
+		<div style="width:100%;font-size:36px;line-height:40px;color:white;background-image:linear-gradient(to bottom, #0088CC, #0077B3);">
+			#{msgs.title}
+		</div>
+		<p:toolbar id="tb">
+<p:toolbarGroup align="right">
+<p:button value="My Home" icon="ui-icon-home" rendered="#{loginUtil.loggedIn}" href="welcome-auth.xhtml"></p:button>
+<p:button value="Login" icon="ui-icon-check" rendered="#{not loginUtil.loggedIn}" href="login.xhtml"></p:button>
+<p:button value="Sign Up" icon="ui-icon-arrowreturnthick-1-w" rendered="#{not loginUtil.loggedIn}" href="index.xhtml#signup"></p:button>
+
+<p:separator />
+</p:toolbarGroup>
+</p:toolbar>
+		
+	</h:body>
+</html>

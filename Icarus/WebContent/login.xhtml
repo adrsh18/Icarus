@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 	xmlns="http://www.w3.org/1999/xhtml"		
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+		<head>
+
+</head>
+<ui:composition template="/WEB-INF/templates/base.xhtml">
+	<ui:define name="main-content">
+	  
+		<h:form id="form">  
+  			<p:growl id="growl" showDetail="true" life="3000" />
+		    <p:panel id="panel" header="Login to continue">  
+		  
+			        <p:messages id="msgs"/>  
+			  
+			        <h:panelGrid columns="2" cellpadding="5">  
+			            <h:outputLabel for="username" value="Username:" />  
+			            <p:inputText value="#{loginUtil.login.username}"   
+			                    id="username" required="true" label="username" />  
+			              
+			            <h:outputLabel for="password" value="Password:" />  
+			            <h:inputSecret value="#{loginUtil.login.password}"   
+			                    id="password" required="true" label="password" />  
+			                              			              
+			        </h:panelGrid>  
+		  
+		        <p:commandButton id="loginButton" value="Login"   
+			                    action="#{loginUtil.login}" ajax="false" 
+			                 />  
+		    </p:panel>  
+		  
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

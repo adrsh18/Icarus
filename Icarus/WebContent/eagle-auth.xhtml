@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 	xmlns="http://www.w3.org/1999/xhtml"		
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+<h:head>
+<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+</h:head>
+
+<ui:composition template="/WEB-INF/templates/home-template.xhtml">
+	<ui:define name="main-sub-content">
+		<f:metadata>
+    		<f:event type="preRenderView" listener="#{loginUtil.loginCheck}" />
+		</f:metadata>
+		<f:event listener="#{organizationUtil.initialize}" type="preRenderView"></f:event>
+		   <f:view>
+  			<h:form>  
+  
+    <p:gmap center="12.971599,77.594563" zoom="11" type="HYBRID" model="#{mapBean.advancedModel}" style="width:600px;height:400px">  
+  
+        <p:ajax event="overlaySelect" listener="#{mapBean.onMarkerSelect}" />  
+  
+        <p:gmapInfoWindow>  
+            <p:outputPanel style="text-align:center;display:block;margin:auto:">  
+  
+                     <h:outputText value="#{mapBean.marker.data}" />
+                    <br />  
+                    <h:outputText value="#{mapBean.marker.title}" />  
+  
+            </p:outputPanel>  
+  
+        </p:gmapInfoWindow>  
+    </p:gmap>  
+  
+</h:form> 
+		  <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+		</f:view>
+	</ui:define>
+</ui:composition>
+</html>

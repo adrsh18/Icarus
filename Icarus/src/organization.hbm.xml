@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.icarus.pojo">
+	<class name="com.icarus.pojo.Organization" table="organization">
+		<id name="organizationId" type="long" column="organization_id" length="20">
+			<generator class="increment" />
+		</id>
+		<property name="organizationName" type="string" column="organization_name"
+			length="50">
+		</property>
+		<property name="typeId" type="long" column="type_id"
+			length="20">
+		</property>
+		<property name="latitude" type="string" column="latitude"
+			length="20">
+		</property>
+		<property name="longitude" type="string" column="longitude"
+			length="20">
+		</property>
+	</class>
+	<sql-query name="findUsersByOrganizationId">
+	<return alias="user" class="com.icarus.pojo.User"/>
+	<![CDATA[select u.user_id, u.phone_number, u.type_id from user u, service_units s where u.user_id = s.user_id and s.organization_id = ? order by u.user_id]]>
+    </sql-query>
+    <sql-query name="findUserDataByOrganizationId">
+	<return alias="user_data" class="com.icarus.pojo.UserData"/>
+	<![CDATA[select u.user_id, u.first_name, u.last_name, u.email, u.description from user_data u, service_units s where u.user_id = s.user_id and s.organization_id = ? order by u.user_id]]>
+    </sql-query>
+    <sql-query name="findUserLocationByOrganizationId">
+	<return alias="location" class="com.icarus.pojo.Location"/>
+	<![CDATA[select l.user_id, l.latitude, l.longitude, l.time_logged from location l, service_units s where l.user_id = s.user_id and s.organization_id = ? order by l.user_id]]>
+    </sql-query>
+</hibernate-mapping>

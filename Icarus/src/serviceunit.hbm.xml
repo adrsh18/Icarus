@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.icarus.pojo">
+	<class name="com.icarus.pojo.ServiceUnit" table="service_units">
+		<id name="userId" type="long" column="user_id" length="20">
+		</id>
+		<property name="organizationId" type="long" column="organization_id"
+			length="20">
+		</property>
+		<property name="availability" type="string" column="availability"
+			length="10">
+		</property>
+	</class>
+	<sql-query name="findServiceUnitsByOrganizationId">
+	<return alias="service_units" class="com.icarus.pojo.ServiceUnit"/>
+	<![CDATA[select s.organization_id, s.user_id, s.availability from service_units s where s.organization_id = ? order by s.user_id]]>
+    </sql-query>
+</hibernate-mapping>

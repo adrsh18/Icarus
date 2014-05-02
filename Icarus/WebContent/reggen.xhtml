@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/templates/base.xhtml">
+	<ui:define name="main-content">
+		<p:growl autoUpdate="true"/>
+		
+		<table width="100%">
+			<tr>
+				<td style="width:50%">
+					<p:panel header="Register">
+						<h:form>
+							<p:panelGrid columns="2" style="width:100%">
+							<p:outputLabel value="First Name" />
+							<p:inputText required="true" requiredMessage="First Name required" 
+											value="#{userRegistration.firstName}">
+							</p:inputText> 
+							
+							<p:outputLabel value="Last Name" />
+							<p:inputText required="true" requiredMessage="Last Name required" 
+											value="#{userRegistration.lastName}">
+							</p:inputText> 
+							
+							<p:outputLabel value="Phone Number" />
+							<p:inputText required="true" requiredMessage="Phone Number required" 
+											value="#{userRegistration.phoneNumber}" 
+											validatorMessage="Phone Number must be a Number and less than 10 digits">
+								<f:validateLongRange/>
+								<f:validateLength maximum="10"/>
+							</p:inputText> 
+							
+							<p:outputLabel value="Email" />
+							<p:inputText required="true" requiredMessage="Email required" 
+										value="#{userRegistration.email}" 
+										validatorMessage="Invalid Email.">
+								<f:validateRegex pattern="[a-zA-Z0-9._]+@[a-zA-Z0-9._]+.[a-zA-Z]+"></f:validateRegex>
+							</p:inputText> 
+							
+							<f:facet name="footer">
+								<p:commandButton value="Download App" 
+											action="#{userRegistration.registerUser}" 
+											disabled="#{userRegistration.readyDownload}"
+											update=":downloadAppPanel @this"/>
+							</f:facet>
+							</p:panelGrid>
+						</h:form>
+					</p:panel>
+				</td>
+				<td style="width:50%">
+					<p:panel header="Choose" id="downloadAppPanel">
+						<p:selectOneRadio id="customRadio" value="#{userRegistration.downloadOption}"  
+										layout="custom" 
+										disabled="#{not userRegistration.readyDownload}">
+							<f:ajax event="change"/>
+							<f:selectItem itemLabel="Android" itemValue="android" />
+							<f:selectItem itemLabel="Windows" itemValue="windows" />
+							<f:selectItem itemLabel="iOS" itemValue="ios" />
+							<f:selectItem itemLabel="Blackberry" itemValue="blavkberry" />
+						</p:selectOneRadio>
+						<h:panelGrid columns="2">
+							<p:radioButton id="opt1" for="customRadio" itemIndex="0"/>
+							<h:outputLabel for="opt1" value="Android" />
+							
+							<p:radioButton id="opt2" for="customRadio" itemIndex="1"/>
+							<h:outputLabel for="opt2" value="Windows" />
+							
+							<p:radioButton id="opt3" for="customRadio" itemIndex="2"/>
+							<h:outputLabel for="opt3" value="iOS" />
+							
+							<p:radioButton id="opt4" for="customRadio" itemIndex="3"/>
+							<h:outputLabel for="opt4" value="Blackberry" />
+							
+						</h:panelGrid>
+						
+						<h:form id="appDownloadForm">
+						<p:commandButton value="Download" 
+										disabled="#{not userRegistration.readyDownload and empty userRegistration.downloadOption}" 
+										ajax="false">
+						</p:commandButton>
+						</h:form>
+					</p:panel>
+				</td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>
+</html>

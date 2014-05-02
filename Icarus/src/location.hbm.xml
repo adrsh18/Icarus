@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.icarus.pojo">
+	<class name="com.icarus.pojo.Location" table="location">
+		<id name="userId" type="long" column="user_id" length="20">
+		</id>
+		<property name="latitude" type="string" column="latitude"
+			length="20">
+		</property>
+		<property name="longitude" type="string" column="longitude"
+			length="20">
+		</property>
+		<property name="timeLogged" type="timestamp" column="time_logged">
+		</property>
+	</class>
+	<sql-query name="findNearestUsers">
+	<return alias="location" class="com.icarus.pojo.Location"/>
+	<![CDATA[select l.user_id, l.latitude, l.longitude, l.time_logged from location l, user u where u.user_id = l.user_id and u.type_id = ? having SQRT(POW(69.1 * (latitude - ?), 2) + POW(69.1 * (? - longitude) * COS(latitude / 57.3), 2))< 25 order by u.user_id]]>
+    </sql-query>
+    <sql-query name="findNearestUserBasicData">
+	<return alias="user" class="com.icarus.pojo.User"/>
+	<![CDATA[select u.user_id, u.phone_number, u.type_id from location l, user u where u.user_id = l.user_id and u.type_id = ? and SQRT(POW(69.1 * (latitude - ?), 2) + POW(69.1 * (? - longitude) * COS(latitude / 57.3), 2))< 25 order by u.user_id]]>
+    </sql-query>
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.icarus.pojo">
+	<class name="com.icarus.pojo.Transaction" table="transactions">
+		<id name="transactionId" type="long" column="transaction_id" length="20">
+			<generator class="increment" />
+		</id>
+		<property name="sourceId" type="long" column="source_id"
+			length="20">
+		</property>
+		<property name="destinationId" type="long" column="destination_id"
+			length="20">
+		</property>
+		<property name="destinationLatitude" type="string" column="destination_latitude"
+			length="20">
+		</property>
+		<property name="destinationLongitude" type="string" column="destination_longitude"
+			length="20">
+		</property>
+		<property name="sourceLatitude" type="string" column="source_latitude"
+			length="20">
+		</property>
+		<property name="sourceLongitude" type="string" column="source_longitude"
+			length="20">
+		</property>
+		<property name="startTime" type="timestamp" column="start_time"
+			length="20">
+		</property>
+		<property name="endTime" type="timestamp" column="end_time"
+			length="20">
+		</property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 	xmlns="http://www.w3.org/1999/xhtml"		
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/home-template.xhtml">
+	<ui:define name="main-sub-content">
+		<f:metadata>
+    		<f:event type="preRenderView" listener="#{loginUtil.loginCheck}" />
+		</f:metadata>
+		 <p:panel header="Add a new unit">
+						<h:form>
+							<p:growl id="growl" showDetail="true" life="3000" />
+							<p:panelGrid columns="2" style="width:100%">
+							<p:outputLabel value="Unit Name" />
+							<p:inputText required="true" requiredMessage="Unit Name required" 
+											value="#{addUnitBean.unit.firstName}">
+							</p:inputText> 
+							
+							<p:outputLabel value="Phone Number" />
+							<p:inputText required="true" requiredMessage="Phone Number required" 
+											value="#{addUnitBean.unit.phoneNumber}" 
+											validatorMessage="Phone Number must be a Number and less than 10 digits">
+								<f:validateLongRange/>
+								<f:validateLength maximum="10"/>
+								<p:ajax event="blur" update="@this" listener="#{addUnitBean.phoneNumberCheck}"></p:ajax>
+							</p:inputText> 
+							
+							<p:outputLabel value="Email" />
+							<p:inputText required="true" requiredMessage="Email required" 
+										value="#{addUnitBean.unit.email}" 
+										validatorMessage="Invalid Email.">
+								<f:validateRegex pattern="[a-zA-Z0-9._]+@[a-zA-Z0-9._]+.[a-zA-Z]+"></f:validateRegex>
+							</p:inputText> 
+							
+							<p:outputLabel value="Description" />
+							<p:inputTextarea value="#{addUnitBean.unit.description}"></p:inputTextarea>
+							
+							<f:facet name="footer">
+								<p:commandButton value="Add Unit" 
+											action="#{addUnitBean.addUnit}" ajax="false"
+										/>
+							</f:facet>
+							</p:panelGrid>
+						</h:form>
+					</p:panel>
+	</ui:define>
+</ui:composition>
+</html>

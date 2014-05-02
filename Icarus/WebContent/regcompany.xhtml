@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+	<ui:composition template="/WEB-INF/templates/base.xhtml">
+		<ui:define name="main-content">
+			<p:growl autoUpdate="true"/>
+				<h:form>
+					<p:separator>Register your company and get started</p:separator>
+					<p:wizard id="organizationWizardComponent" disabled="not #{organizationWizard.organization.done}">
+						
+						<p:tab id="personal" title="Basic">
+							<p:panel header="Basic Details">
+							<h:panelGrid columns="2">
+							<h:outputText value="Company Name" required="true"/>
+							<p:inputText value="#{organizationWizard.organization.companyName}" required="true" requiredMessage="Company Name cannot be empty">
+								<f:ajax event="blur"/>
+							</p:inputText>
+							<h:outputText value="Company Type" />
+							<p:selectOneMenu value="#{organizationWizard.organization.typeId}">
+								<f:selectItem itemLabel="Select One" itemValue=""></f:selectItem>
+								<f:selectItems value="#{organizationWizard.organization.types}"
+									var="type" itemLabel="#{type.title}" itemValue="#{type.typeId}"/>
+							</p:selectOneMenu>
+							<h:outputText value="Country/Region" required="true"/>
+							<p:inputText value="#{organizationWizard.organization.country}" required="true" requiredMessage="Country/Region cannot be empty">
+								<f:ajax event="blur"/>
+							</p:inputText>
+							</h:panelGrid>
+							</p:panel>
+						</p:tab>
+						<p:tab id="address" title="Address">
+							<p:panel header="Adress Details">
+								<h:panelGrid columns="2" columnClasses="label, value">
+									<h:outputText value="Street: *" />
+									<p:inputText value="#{organizationWizard.organization.street}" required="true" requiredMessage="Street cannot be empty">
+										<f:ajax event="blur"></f:ajax>
+									</p:inputText>
+									<h:outputText value="City: *" />
+									<p:inputText value="#{organizationWizard.organization.city}" required="true" requiredMessage="City cannot be empty">
+										<f:ajax event="blur"></f:ajax>
+									</p:inputText>
+									<h:outputText value="Postal Code: *" />
+									<p:inputText value="#{organizationWizard.organization.postalCode}" required="true" requiredMessage="Postal Code cannot be empty"
+											validatorMessage="Postal Code must be a number and have atleast 6 digits">
+										<f:ajax event="blur"></f:ajax>
+										<f:validateLongRange></f:validateLongRange>
+										<f:validateLength minimum="6" maximum="6"></f:validateLength>
+									</p:inputText>
+								</h:panelGrid>
+							</p:panel>
+						</p:tab>
+						<p:tab id="contact" title="Contact">
+							<p:panel header="Contact Information">
+							<h:panelGrid columns="2">
+							<h:outputText value="Email: *" />
+							<p:inputText value="#{organizationWizard.organization.email}" required="true" requiredMessage="Email cannot be empty"
+										validatorMessage="Invalid Email">
+								<f:ajax></f:ajax>
+								<f:validateRegex pattern="[a-zA-Z0-9._]+@[a-zA-Z0-9._]+.[a-zA-Z]+"></f:validateRegex>
+							</p:inputText>
+							<h:outputText value="Website: " />
+							<p:inputText value="#{organizationWizard.organization.website}"/>
+							<h:outputText value="Phone: *" />
+							<p:inputText value="#{organizationWizard.organization.primaryPhone}" required="true" requiredMessage="Phone Number cannot be empty"
+									validatorMessage="Invalid Phone Number">
+									<f:ajax></f:ajax>
+									<f:validateLongRange></f:validateLongRange>
+									<f:validateLength maximum="11"></f:validateLength>
+							</p:inputText>
+							<h:outputText value="Secondary Phone: " />
+							<p:inputText value="#{organizationWizard.organization.secondaryPhone}" validatorMessage="Invalid Phone Number">
+								<f:ajax></f:ajax>
+								<f:validateLongRange></f:validateLongRange>
+								<f:validateLength maximum="11"></f:validateLength>
+							</p:inputText>
+							</h:panelGrid>
+							</p:panel>
+						</p:tab>
+						<p:tab id="confirm" title="Confirmation">
+							<p:panel header="Confirmation">
+							<h:panelGrid id="confirmation" columns="2">
+								<h:outputText value="Comapny Name: " />
+								<h:outputText value="#{organizationWizard.organization.companyName}"/>
+								<h:outputText value="Country/Region: " />
+								<h:outputText value="#{organizationWizard.organization.country}" />
+								<h:outputText value="Street: " />
+								<h:outputText value="#{organizationWizard.organization.street}" />
+								<h:outputText value="Postal Code: " />
+								<h:outputText value="#{organizationWizard.organization.postalCode}"/>
+								<h:outputText value="City: " />
+								<h:outputText value="#{organizationWizard.organization.city}"/>
+								<h:outputText value="Email: " />
+								<h:outputText value="#{organizationWizard.organization.email}" />
+								<h:outputText value="Website: " />
+								<h:outputText value="#{organizationWizard.organization.website}" />
+								<h:outputText value="Phone: " />
+								<h:outputText value="#{organizationWizard.organization.primaryPhone}"/>
+								<h:outputText value="Secondary Phone: " />
+								<h:outputText value="#{organizationWizard.organization.secondaryPhone}"/>
+								<h:outputText />
+								<h:outputText />
+							</h:panelGrid>
+							<p:commandButton value="Submit" actionListener="#{organizationWizard.save}">
+								<f:ajax update="organizationWizardComponent"></f:ajax>
+							</p:commandButton>
+							</p:panel>
+						</p:tab>
+					</p:wizard>
+				</h:form>
+		</ui:define>
+	</ui:composition>
+</html>

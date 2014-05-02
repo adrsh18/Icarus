@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 	xmlns="http://www.w3.org/1999/xhtml"		
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/home-template.xhtml">
+	<ui:define name="main-sub-content">
+	<f:metadata>
+    		<f:event type="preRenderView" listener="#{loginUtil.loginCheck}" />
+		</f:metadata>
+	<f:view>
+		<f:event listener="#{organizationUtil.initialize}" type="preRenderView"></f:event>
+		 <h:form id="form">  
+  
+    <p:growl id="msgs" showDetail="true" />  
+  
+    <p:dataTable id="units" var="unit" value="#{unitsBean.unitList}" emptyMessage="No units found with given criteria" filteredValue="#{unitsBean.filteredUnits}"
+    	>
+    	
+    	<f:facet name="header">  
+            <p:outputPanel>  
+                <h:outputText value="Search all fields:" />  
+                <p:inputText id="globalFilter" onkeyup="carsTable.filter()" style="width:150px" />  
+            </p:outputPanel>  
+        </f:facet>  
+  
+        <p:column headerText="PhoneNumber" style="width:24%" filterBy="phoneNumber" filterMatchMode="contains">  
+            <h:outputText value="#{unit.phoneNumber}" />  
+        </p:column>  
+  
+        <p:column headerText="Location" style="width:24%" filterBy="address" filterMatchMode="contains">  
+            <h:outputText value="#{unit.address}" />  
+        </p:column>  
+  
+        <p:column headerText="Status" style="width:24%" filterBy="status" filterMatchMode="contains">  
+            <h:outputText value="#{unit.status}" />  
+        </p:column>  
+  
+        <p:column style="width:4%">  
+                <p:commandButton id="selectButton" update=":form:display" oncomplete="PF('unitDialog').show()" icon="ui-icon-search" title="View">  
+                <f:setPropertyActionListener value="#{unit}" target="#{unitsBean.selectedUnit}" />  
+            </p:commandButton>  
+        </p:column>  
+  
+    </p:dataTable>  
+  
+    <p:dialog header="Unit Detail" widgetVar="unitDialog" resizable="false" id="carDlg"  
+                showEffect="fade" hideEffect="shake" modal="true" appendToBody="true">  
+  
+        <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
+  
+            <f:facet name="header">  
+                
+            </f:facet>  
+  
+            <h:outputText value="Phone Number" />  
+            <h:outputText value="#{unitsBean.selectedUnit.phoneNumber}" style="font-weight:bold"/>  
+            <p:gmap center="12.971599,77.594563" zoom="13" type="HYBRID"   
+        style="width:600px;height:400px"  
+        model="#{unit.model}" />
+  
+        </h:panelGrid>  
+  
+    </p:dialog>  
+  
+</h:form>
+	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+	</f:view>
+	</ui:define>
+</ui:composition>
+</html>

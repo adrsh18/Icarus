@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.icarus.pojo">
+	<class name="com.icarus.pojo.User" table="user">
+		<id name="userId" type="long" column="user_id" length="20">
+			<generator class="increment" />
+		</id>
+		<property name="phoneNumber" type="string" column="phone_number"
+			length="11">
+		</property>
+		<property name="typeId" type="long" column="type_id"
+			length="10">
+		</property>
+	</class>
+	<sql-query name="findUserByPhoneNumber">
+	<return alias="user" class="com.icarus.pojo.User"/>
+	<![CDATA[select * from user u where u.phone_number = ?]]>
+    </sql-query>
+</hibernate-mapping>

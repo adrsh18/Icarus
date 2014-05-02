@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.icarus.pojo">
+	<class name="com.icarus.pojo.Login" table="login">
+		<id name="loginId" type="string" column="login_id" length="20">
+		</id>
+		<property name="password" type="string" column="password"
+			length="20">
+		</property>
+		<property name="organizationId" type="long" column="organization_id"
+			length="20">
+		</property>
+	</class>
+	<sql-query name="findLoginByLoginID">
+	<return alias="login" class="com.icarus.pojo.Login"/>
+	<![CDATA[select * from login l where l.login_id = ?]]>
+    </sql-query>
+</hibernate-mapping>

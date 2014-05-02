@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 	xmlns="http://www.w3.org/1999/xhtml"		
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/base.xhtml">
+	<ui:define name="main-content">
+		<center>
+		<p:carousel numVisible="1" itemStyle="position:relative;height:200px;width:5%;" autoPlayInterval="2000" circular="true">
+			<p:tab title="tab-one">
+				<h:panelGrid columns="2" cellpadding="10">
+					<p:graphicImage name="images/infopath_2013.png" />
+					<h:panelGrid columns="1">
+					<h:outputText value="Welcome to Icarus" styleClass="tab-head"/>
+					<h:outputText value="Your gateway to location based emergency and tracking services" />
+					</h:panelGrid>
+				</h:panelGrid>
+			</p:tab>
+			<p:tab title="tab-two">
+				<h:panelGrid columns="2" cellpadding="10">
+					<p:graphicImage name="images/google_places.png" />
+					<h:panelGrid columns="1">
+					<h:outputText value="Accuracy" styleClass="tab-head"/>
+					<h:outputText value="We make use of Google Maps Services to accurately identify your location. That means you can count on us during emergencies to reach out to you for aid." />
+					</h:panelGrid>
+				</h:panelGrid>
+			</p:tab>
+			<p:tab title="tab-three">
+				<h:panelGrid columns="2" cellpadding="10">
+					<p:graphicImage name="images/winamp.png" />
+					<h:panelGrid columns="1">
+					<h:outputText value="Lightning Fast" styleClass="tab-head"/>
+					<h:outputText value="We maintain an efficient network between you and the service units so that you will get a quick response." />
+					</h:panelGrid>
+				</h:panelGrid>
+			</p:tab>
+			<p:tab title="tab-four">
+				<h:panelGrid columns="2" cellpadding="10">
+					<p:graphicImage name="images/android_smartphone.png" />
+					<h:panelGrid columns="1">
+					<h:outputText value="Smart App" styleClass="tab-head"/>
+					<h:outputText value="Access our services from your smartphone. Our app can be run on any phone, let it be android or windows." />
+					</h:panelGrid>
+				</h:panelGrid>
+			</p:tab>
+		</p:carousel>
+		<p:separator></p:separator>
+		<h:form>
+			<p:panel header="Sign Up" id="signup">
+				<h:panelGrid columns="3">
+					
+						<p:fieldset legend="General User">
+							<h:panelGrid column="2">
+								<p:commandLink action="reggen.xhtml">
+									<p:graphicImage name="images/myspace_alt.png" />
+								</p:commandLink>
+								<h:outputText value="General User" styleClass="tab-head"/>
+								<h:outputText value="Register and download our app to your smart phone. You can reach out to the nearest Ambulance units and hospitals with one click. The app runs on multiple platforms and its absolutely free."></h:outputText>
+								<h:commandButton action="reggen.xhtml" value="Try it out now"></h:commandButton>
+							</h:panelGrid>
+						</p:fieldset>
+						<p:fieldset legend="Service Unit">
+							<h:panelGrid column="2">
+								<p:commandLink action="reggen.xhtml">
+									<p:graphicImage name="images/steam_alt.png" />
+								</p:commandLink>
+								<h:outputText value="Service Unit" styleClass="tab-head"/>
+								<h:outputText value="Register and download our app to your smart phone. You can reach out to the nearest Ambulance units and hospitals with one click. The app runs on multiple platforms and its absolutely free."></h:outputText>
+								<h:commandButton action="reggen.xhtml" value="Try it out now"></h:commandButton>
+							</h:panelGrid>
+						</p:fieldset>
+						<p:fieldset legend="Enterprise">
+							<h:panelGrid column="2">
+								<p:commandLink action="regcompany.xhtml">
+									<p:graphicImage name="images/microsoft_security_essentials.png" />
+								</p:commandLink>
+								<h:outputText value="Enterprise" styleClass="tab-head"/>
+								<h:outputText value="Register and download our app to your smart phone. You can reach out to the nearest Ambulance units and hospitals with one click. The app runs on multiple platforms and its absolutely free."></h:outputText>
+								<h:commandButton action="regcompany.xhtml" value="Try it out now"></h:commandButton>
+							</h:panelGrid>
+						</p:fieldset>
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+		</center>
+	</ui:define>
+</ui:composition>
+</html>

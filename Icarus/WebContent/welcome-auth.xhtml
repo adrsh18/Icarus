@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 	xmlns="http://www.w3.org/1999/xhtml"		
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/home-template.xhtml">
+	<ui:define name="main-sub-content">
+		<f:metadata>
+    		<f:event type="preRenderView" listener="#{loginUtil.loginCheck}" />
+		</f:metadata>
+		 <p:growl id="growl" showDetail="true" /> 
+		<h1 class="title ui-widget-header ui-corner-all">Welcome #{organizationUtil.organization.organizationName}</h1>
+		<p:graphicImage url="images/google_places.png"></p:graphicImage>
+		<h:form>  
+  
+  
+	    <p:fieldset legend="Your Details" toggleable="true" toggleSpeed="500">
+	        <h:panelGrid columns="2" cellpadding="10">  
+	           <p:outputLabel value="Company Name"></p:outputLabel>
+	           <p:outputLabel value="#{organizationUtil.organization.organizationName}"></p:outputLabel>
+	           <p:outputLabel value="Company ID"></p:outputLabel>
+	           <p:outputLabel value="#{organizationUtil.organization.organizationId}"></p:outputLabel>
+	        </h:panelGrid>  
+	    </p:fieldset>  
+  
+</h:form>
+
+<h:form>  
+  
+  
+	    <p:fieldset legend="Service Unit Summary" toggleable="true" toggleSpeed="500">
+	        <h:panelGrid columns="2" cellpadding="10">  
+	           <p:outputLabel value="Total Units Available"></p:outputLabel>
+	           <p:outputLabel value="#{organizationUtil.totalUnitCount()}"></p:outputLabel>
+	           <p:outputLabel value="Active Units"></p:outputLabel>
+	           <p:outputLabel value="#{organizationUtil.activeUnitCount()}"></p:outputLabel>
+	        </h:panelGrid>  
+	    </p:fieldset>  
+  
+</h:form>
+	</ui:define>
+</ui:composition>
+</html>

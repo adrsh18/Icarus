@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.icarus.pojo">
+	<class name="com.icarus.pojo.UserData" table="user_data">
+		<id name="userId" type="long" column="user_id" length="20">
+		</id>
+		<property name="firstName" type="string" column="first_name"
+			length="30">
+		</property>
+		<property name="lastName" type="string" column="last_name"
+			length="30">
+		</property>
+		<property name="email" type="string" column="email"
+			length="30">
+		</property>
+		<property name="description" type="string" column="description"
+			length="60">
+		</property>
+	</class>
+</hibernate-mapping>
