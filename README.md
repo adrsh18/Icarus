@@ -5,7 +5,8 @@ Author: Adarsh (For feedback: adrsh18@gmail.com)
 (To view code directly, navigate to **Icarus/src/com/icarus/persistence** or **Icarus/src/com/icarus/pojo**)
 
 This is a code extract from my final year project and you can visit the website at this [link >>] (http://icarus-deltaprime.rhcloud.com)
-[Click here for Project UML] (https://drive.google.com/folderview?id=0BzN3cL-RAt8TUFFYT21FY2ZlUzA&usp=sharing)
+
+[Click here for Project UML and WAR file] (https://drive.google.com/folderview?id=0BzN3cL-RAt8TUFFYT21FY2ZlUzA&usp=sharing)
 ### Intent
 
 This piece of code illustrates my attempts to solve some of the problems in designing **Persistence Layer of an n-tiered web application**. I have found that patterns such as **DAO** (Data Access Object) serve as a good place to start and the following sections describe my implementation of the same.
