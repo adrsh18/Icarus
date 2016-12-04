@@ -2,6 +2,9 @@
 ###### (Incomplete Web Application)
 Author: Adarsh (For feedback: adrsh18@gmail.com)
 
+IS801:Software Design Patterns
+ASSIGNMENT
+
 (To view code directly, navigate to **Icarus/src/com/icarus/persistence** or **Icarus/src/com/icarus/pojo**)
 
 This is a code extract from my final year project and you can visit the website at this [link >>] (http://icarus-deltaprime.rhcloud.com)
