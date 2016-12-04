@@ -22,7 +22,7 @@ In other words, a write operation,for instance, should be performed by calling a
 
 ### Before Moving On
 
-I have chosen **Java** to implement the project. I have also employed another technology called **Hibernate** (Object Relational Mapping). With this in hand, once a POJO and its suitable mapping to a table are written CRUD operations can be performed without writing the SQL queries.
+I have chosen **Java** to implement the project. I have also employed **Hibernate** (Object Relational Mapping). With this in hand, once a POJO and its suitable mapping to a table are written CRUD operations can be performed without writing the SQL queries.
 
 ### Data Access Object Pattern (DAO)
 
